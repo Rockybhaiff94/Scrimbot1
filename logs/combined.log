@@ -1,0 +1,66 @@
+2026-07-06 20:06:27 [[31merror[39m]: [Startup Error] querySrv ECONNREFUSED _mongodb._tcp.cluster0.ktxx4sr.mongodb.net
+2026-07-06 20:10:17 [[31merror[39m]: [Startup Error] querySrv ECONNREFUSED _mongodb._tcp.cluster0.ktxx4sr.mongodb.net
+2026-07-06 20:12:04 [[32minfo[39m]: [Bot] Logged in as starlight#9992!
+2026-07-06 20:15:26 [[32minfo[39m]: Started clearing old application (/) commands.
+2026-07-06 20:15:26 [[31merror[39m]: Error deploying commands: Unknown Application
+2026-07-06 20:16:15 [[32minfo[39m]: Started clearing old application (/) commands.
+2026-07-06 20:16:16 [[32minfo[39m]: Successfully cleared guild commands for guild: 1517983188792643625
+2026-07-06 20:16:16 [[32minfo[39m]: Successfully cleared global commands.
+2026-07-06 20:16:16 [[32minfo[39m]: Started refreshing application (/) commands.
+2026-07-06 20:16:17 [[32minfo[39m]: Successfully loaded 1 application (/) commands to guild.
+2026-07-06 20:16:59 [[32minfo[39m]: [Bot] Logged in as starlight#9992!
+2026-07-06 20:18:44 [[32minfo[39m]: Started clearing old application (/) commands.
+2026-07-06 20:18:45 [[32minfo[39m]: Successfully cleared guild commands for guild: 1517983188792643625
+2026-07-06 20:18:45 [[32minfo[39m]: Successfully cleared global commands.
+2026-07-06 20:18:45 [[32minfo[39m]: Started refreshing application (/) commands.
+2026-07-06 20:18:46 [[31merror[39m]: Error deploying commands: ⨯ Unable to compile TypeScript:
+src/commands/tournament.ts(6,3): error TS2322: Type 'SlashCommandSubcommandsOnlyBuilder' is not assignable to type 'SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">'.
+  Type 'SlashCommandSubcommandsOnlyBuilder' is missing the following properties from type 'SlashCommandBuilder': addBooleanOption, addUserOption, addChannelOption, addRoleOption, and 6 more.
+src/commands/tournament.ts(30,9): error TS2322: Type '(interaction: CommandInteraction<CacheType>) => Promise<InteractionResponse<boolean> | undefined>' is not assignable to type '(interaction: CommandInteraction<CacheType>) => Promise<void>'.
+  Type 'Promise<InteractionResponse<boolean> | undefined>' is not assignable to type 'Promise<void>'.
+    Type 'InteractionResponse<boolean> | undefined' is not assignable to type 'void'.
+      Type 'InteractionResponse<boolean>' is not assignable to type 'void'.
+
+2026-07-06 20:19:17 [[32minfo[39m]: Started clearing old application (/) commands.
+2026-07-06 20:19:18 [[32minfo[39m]: Successfully cleared guild commands for guild: 1517983188792643625
+2026-07-06 20:19:19 [[32minfo[39m]: Successfully cleared global commands.
+2026-07-06 20:19:19 [[32minfo[39m]: Started refreshing application (/) commands.
+2026-07-06 20:19:20 [[32minfo[39m]: Successfully loaded 2 application (/) commands to guild.
+2026-07-06 20:22:04 [[32minfo[39m]: [Bot] Logged in as starlight#9992!
+2026-07-06 20:23:46 [[32minfo[39m]: Started clearing old application (/) commands.
+2026-07-06 20:23:46 [[32minfo[39m]: Successfully cleared guild commands for guild: 1517983188792643625
+2026-07-06 20:23:46 [[32minfo[39m]: Successfully cleared global commands.
+2026-07-06 20:23:46 [[32minfo[39m]: Started refreshing application (/) commands.
+2026-07-06 20:23:51 [[32minfo[39m]: Successfully loaded 3 application (/) commands to guild.
+2026-07-06 20:24:33 [[32minfo[39m]: [Bot] Logged in as starlight#9992!
+2026-07-06 20:26:48 [[32minfo[39m]: Started clearing old application (/) commands.
+2026-07-06 20:26:49 [[32minfo[39m]: Successfully cleared guild commands for guild: 1517983188792643625
+2026-07-06 20:26:49 [[32minfo[39m]: Successfully cleared global commands.
+2026-07-06 20:26:49 [[32minfo[39m]: Started refreshing application (/) commands.
+2026-07-06 20:26:53 [[32minfo[39m]: Successfully loaded 4 application (/) commands to guild.
+2026-07-06 21:38:52 [[32minfo[39m]: [Bot] Logged in as starlight#9992!
+2026-07-06 21:43:45 [[32minfo[39m]: [Bot] Logged in as starlight#9992!
+2026-07-06 21:45:17 [[32minfo[39m]: Started clearing old application (/) commands.
+2026-07-06 21:45:17 [[32minfo[39m]: Successfully cleared guild commands for guild: 1517983188792643625
+2026-07-06 21:45:17 [[32minfo[39m]: Successfully cleared global commands.
+2026-07-06 21:45:17 [[32minfo[39m]: Started refreshing application (/) commands.
+2026-07-06 21:45:25 [[32minfo[39m]: Successfully loaded 7 application (/) commands to guild.
+2026-07-06 21:46:18 [[32minfo[39m]: Started clearing old application (/) commands.
+2026-07-06 21:46:18 [[32minfo[39m]: Successfully cleared guild commands for guild: 1517983188792643625
+2026-07-06 21:46:19 [[32minfo[39m]: Successfully cleared global commands.
+2026-07-06 21:46:19 [[32minfo[39m]: Started refreshing application (/) commands.
+2026-07-06 21:46:26 [[32minfo[39m]: Successfully loaded 8 application (/) commands to guild.
+2026-07-06 21:46:47 [[32minfo[39m]: [Bot] Logged in as starlight#9992!
+2026-07-06 21:56:57 [[32minfo[39m]: Started clearing old application (/) commands.
+2026-07-06 21:56:57 [[32minfo[39m]: Successfully cleared guild commands for guild: 1517983188792643625
+2026-07-06 21:56:58 [[32minfo[39m]: Successfully cleared global commands.
+2026-07-06 21:56:58 [[32minfo[39m]: Started refreshing application (/) commands.
+2026-07-06 21:57:07 [[32minfo[39m]: Successfully loaded 9 application (/) commands to guild.
+2026-07-07 20:24:54 [[32minfo[39m]: Started clearing old application (/) commands.
+2026-07-07 20:24:55 [[32minfo[39m]: Successfully cleared guild commands for guild: 1517983188792643625
+2026-07-07 20:24:55 [[32minfo[39m]: Successfully cleared global commands.
+2026-07-07 20:24:55 [[32minfo[39m]: Started refreshing application (/) commands.
+2026-07-07 20:25:05 [[32minfo[39m]: Successfully loaded 10 application (/) commands to guild.
+2026-07-07 20:27:21 [[32minfo[39m]: [Bot] Logged in as starlight#9992!
+2026-07-07 20:27:21 [[32minfo[39m]: [Jobs] Live Leaderboard cron job started (runs every minute).
+2026-07-07 20:27:21 [[32minfo[39m]: [Jobs] Tournament scheduler started (auto-close + reminders).

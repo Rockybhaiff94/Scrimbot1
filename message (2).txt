@@ -1,0 +1,294 @@
+# 32. Room ID & Password Distribution System
+
+## Goal
+
+Create a secure system that allows administrators to distribute Room IDs, Passwords, or custom match instructions **only to users who successfully registered and were approved for a specific tournament**.
+
+This system must never send information to users registered for other tournaments.
+
+---
+
+# Slash Command
+
+```
+/match idpass
+```
+
+Aliases (optional):
+
+```
+/idpass
+/distribute-idpass
+/match distribute
+```
+
+Only Administrators and Tournament Managers can use this command.
+
+---
+
+# Step 1 - Tournament Selection
+
+When the command is executed, the bot should display a Select Menu containing **all active tournaments**.
+
+Each option should display:
+
+* Tournament Name
+* Tournament ID
+* Current Status
+* Registered Players
+* Match Date
+
+Example:
+
+```
+Friday Squad Tournament
+ID: T-1042
+Approved Players: 48
+Status: Upcoming
+```
+
+The admin selects the desired tournament.
+
+---
+
+# Step 2 - Distribution Wizard
+
+After selecting the tournament, the bot should open a modal requesting:
+
+### Room ID (Optional)
+
+Example:
+
+```
+654321987
+```
+
+### Room Password (Optional)
+
+Example:
+
+```
+ABC123
+```
+
+### Custom Message (Optional)
+
+Example:
+
+```
+Please join 15 minutes before the match.
+Do not share the room details with anyone.
+Good luck!
+```
+
+All three fields are optional.
+
+The bot should allow any combination:
+
+* Room ID only
+* Password only
+* Room ID + Password
+* Message only
+* Room ID + Message
+* Password + Message
+* All three together
+
+The command should never fail simply because one field is empty.
+
+---
+
+# Step 3 - DM Preview
+
+Before sending, show the admin a preview embed.
+
+Example:
+
+**Tournament:** Friday Squad Tournament
+
+**Room ID:** 654321987
+
+**Password:** ABC123
+
+**Message:**
+Please join 15 minutes before the match.
+
+Buttons:
+
+* Send
+* Edit
+* Cancel
+
+Nothing is sent until the admin confirms.
+
+---
+
+# Step 4 - Bulk Distribution
+
+After confirmation, the bot should DM **only approved participants** of the selected tournament.
+
+Do NOT send to:
+
+* Pending registrations
+* Rejected users
+* Cancelled registrations
+* Users from other tournaments
+
+The bot should fetch participants using the selected tournament's unique ID or registration embed ID.
+
+---
+
+# DM Embed Design
+
+The user should receive a professional embed.
+
+Example:
+
+**Tournament Name**
+
+Friday Squad Tournament
+
+**Room ID**
+
+654321987
+
+**Room Password**
+
+ABC123
+
+**Organizer Message**
+
+Please join 15 minutes before the match.
+Do not share room credentials.
+Be online 15 minutes early.
+
+Footer:
+
+Good luck and have fun!
+
+---
+
+# Optional Fields
+
+If Room ID is empty:
+
+Hide the Room ID section.
+
+If Password is empty:
+
+Hide the Password section.
+
+If Message is empty:
+
+Hide the Organizer Message section.
+
+The embed should automatically adjust its layout based on the information provided.
+
+---
+
+# Distribution Progress
+
+While sending, display a live progress embed.
+
+Example:
+
+```
+Sending Room Details...
+
+Progress
+32 / 50
+
+Success
+31
+
+Failed
+1
+```
+
+Update progress every few seconds until completed.
+
+---
+
+# Final Report
+
+After completion, send an admin summary.
+
+Example:
+
+Distribution Complete
+
+Tournament:
+Friday Squad Tournament
+
+Approved Players:
+50
+
+DM Sent:
+48
+
+Failed:
+2
+
+Time Taken:
+8 seconds
+
+Failed User IDs:
+(User list)
+
+---
+
+# Failed DM Handling
+
+If a user's DMs are disabled:
+
+* Continue sending to the remaining users.
+* Log the failure.
+* Include failed users in the final report.
+* Never stop the distribution because of one failed DM.
+
+---
+
+# Logging
+
+Send a log entry to the configured log channel containing:
+
+* Administrator
+* Tournament Name
+* Tournament ID
+* Number of Recipients
+* Room ID (if provided)
+* Password (if provided)
+* Custom Message (if provided)
+* Successful DMs
+* Failed DMs
+* Timestamp
+
+---
+
+# Security
+
+The system must guarantee:
+
+* Only approved participants receive the message.
+* Users from other tournaments never receive it.
+* A user who registered for multiple tournaments only receives details for the selected tournament.
+* Every distribution is linked to the tournament's unique database ID, not just the embed message.
+* Room credentials are never posted publicly in any channel.
+* Room credentials are sent only through direct messages.
+
+---
+
+# Future Compatibility
+
+The system should be designed so additional information can be distributed later without changing the core workflow, such as:
+
+* Custom Lobby Code
+* Tournament Password
+* Voice Channel Link
+* Discord Stage Channel
+* Live Stream Link
+* Spectator Link
+* Check-in Reminder
+* Rule Updates
+* Emergency Announcements
+
+This should use the same tournament-selection and participant-filtering system to ensure only the correct registered users receive the information.

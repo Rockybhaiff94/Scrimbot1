@@ -1,0 +1,749 @@
+# Tournament Bot - Complete Development Specification
+
+## Project Goal
+
+Build a professional Discord Tournament Management Bot using **discord.js (latest)** with a modern UI based on Slash Commands, Buttons, Select Menus, Modals and Dynamic Embeds. The bot should automate the complete tournament registration workflow while keeping payment verification manual.
+
+The system must be modular, scalable, editable and support multiple tournaments running simultaneously.
+
+---
+
+# 1. Tournament Creation
+
+## Slash Command
+
+```
+/match create
+```
+
+Only administrators or users with configured permissions can use this command.
+
+The command should launch a multi-step setup wizard instead of asking everything at once.
+
+---
+
+# 2. Tournament Information
+
+The creator should be able to configure:
+
+### Basic Information
+
+* Tournament Name
+* Tournament Description
+* Game Name
+* Match Type
+
+  * Solo
+  * Duo
+  * Squad
+  * Custom
+* Tournament ID (Auto Generated)
+* Organizer Name
+* Host Name
+* Support Contact
+
+---
+
+# 3. Embed Customization
+
+The tournament embed should support:
+
+* Embed Color
+* Embed Author
+* Embed Footer
+* Thumbnail (Avatar)
+* Large Banner Image
+* Custom Emoji
+* Timestamp
+* Optional Rules Section
+* Optional Notes Section
+
+Everything should be editable later.
+
+---
+
+# 4. Registration Settings
+
+Configure:
+
+* Registration Fee
+* Currency
+
+Supported currencies should include:
+
+* INR
+* USD
+* EUR
+* GBP
+* Custom Currency
+
+The currency system should be expandable.
+
+Example:
+
+Registration Fee:
+₹25
+
+Slots:
+50
+
+Total Collection:
+₹1250 (Calculated Automatically)
+
+---
+
+# 5. Slot Management
+
+Admin can configure:
+
+* Total Slots
+* Reserved Slots
+* Waitlist (Optional)
+
+Examples:
+
+10
+
+20
+
+32
+
+48
+
+50
+
+64
+
+100
+
+The bot must display live:
+
+```
+Registered:
+18 / 50
+
+Available:
+32
+```
+
+Every approved registration should reduce available slots.
+
+Slots should NEVER reduce before admin approval.
+
+---
+
+# 6. Registration Time
+
+Admin can configure:
+
+* Registration Opening Time
+* Registration Closing Time
+
+Examples:
+
+* After 6 Hours
+* Tomorrow 8 PM
+* Specific Date & Time
+
+Embed must display:
+
+```
+Registration Ends
+
+23 Hours 18 Minutes Remaining
+```
+
+The countdown should update automatically.
+
+---
+
+# 7. Automatic Registration Closing
+
+Registration must automatically close when either:
+
+* Timer expires
+
+OR
+
+* All slots are filled
+
+Once closed:
+
+* Disable Register Button
+* Change Embed Status
+* Show Registration Closed
+* Reject further registrations
+
+---
+
+# 8. Tournament Status
+
+Embed should always show:
+
+Status
+
+* Upcoming
+* Registration Open
+* Registration Closed
+* Live
+* Completed
+* Cancelled
+
+Status updates automatically.
+
+---
+
+# 9. Registration Button
+
+Tournament embed includes:
+
+```
+Register
+```
+
+When clicked:
+
+Open a Discord Modal.
+
+---
+
+# 10. Registration Form
+
+Collect:
+
+Required
+
+* Discord Username
+* Discord ID
+* Free Fire UID
+* IGN (In-game Name)
+
+Optional
+
+* Phone Number
+* Team Name
+* Extra Notes
+
+Optional Upload
+
+Free Fire Profile Screenshot
+
+Purpose:
+
+Wallet verification / UID verification.
+
+Image upload must be optional.
+
+---
+
+# 11. Registration Channel
+
+After submitting:
+
+Automatically create a private channel.
+
+Example:
+
+```
+ticket-vivek
+```
+
+Only visible to:
+
+* User
+* Admin
+* Tournament Staff
+
+---
+
+# 12. Payment Workflow
+
+Inside the ticket channel the bot automatically sends:
+
+* QR Code Image
+* UPI ID
+* Payment Instructions
+* Registration Fee
+* Tournament Name
+* UID
+* Username
+
+Then instructs:
+
+```
+Complete payment.
+
+Upload payment screenshot.
+
+Wait for admin verification.
+```
+
+---
+
+# 13. Manual Approval System
+
+Admin Buttons:
+
+Approve
+
+Reject
+
+Need More Info
+
+Approve:
+
+* Mark registration successful
+* Assign slot
+* Increase registered count
+* Update tournament embed
+* DM user confirmation
+
+Reject:
+
+* Close registration
+* Notify user
+* Free slot remains available
+
+---
+
+# 14. Live Embed Updates
+
+Every successful approval updates:
+
+Current Slots
+
+Remaining Slots
+
+Collection Amount
+
+Registration Status
+
+Countdown
+
+Everything edits live.
+
+---
+
+# 15. Collection Calculator
+
+Automatically calculate:
+
+```
+Collected Amount
+
+Registration Fee × Approved Users
+```
+
+Example
+
+25 INR
+
+50 Users
+
+Collected
+
+1250 INR
+
+Always update after every approval.
+
+---
+
+# 16. Prize Pool System
+
+Optional feature.
+
+Admin Toggle
+
+Enable Prize Pool
+
+Disable Prize Pool
+
+If enabled:
+
+Allow:
+
+Only First Prize
+
+First + Second
+
+First + Second + Third
+
+Custom Prize Positions
+
+Examples:
+
+1st
+
+₹700
+
+2nd
+
+₹300
+
+3rd
+
+₹250
+
+Or
+
+Winner Takes All
+
+Everything editable.
+
+---
+
+# 17. Prize Management Panel
+
+Private admin embed showing:
+
+Collected Amount
+
+Configured Prize Pool
+
+Remaining Balance
+
+Profit
+
+Pending Prize Distribution
+
+Editable anytime.
+
+---
+
+# 18. Prize Configuration Reminder
+
+When:
+
+All Slots Filled
+
+OR
+
+Registration Closed
+
+Bot asks:
+
+```
+Would you like to configure the prize distribution now?
+
+Yes
+
+Skip
+```
+
+Skip keeps tournament active.
+
+---
+
+# 19. Tournament Preview Mode
+
+While creating:
+
+Everything stays inside a hidden preview channel.
+
+Every change updates the preview embed instantly.
+
+Nothing becomes public yet.
+
+---
+
+# 20. Publish Tournament
+
+Admin presses:
+
+```
+Publish Tournament
+```
+
+Bot asks:
+
+Select Announcement Channel
+
+After confirmation:
+
+Copy the final embed into the selected announcement channel.
+
+Preview remains editable.
+
+---
+
+# 21. Logging System
+
+Dedicated log channel.
+
+Log:
+
+Tournament Created
+
+Tournament Edited
+
+Tournament Published
+
+Registration Submitted
+
+Payment Approved
+
+Payment Rejected
+
+Registration Closed
+
+Tournament Started
+
+Tournament Completed
+
+Tournament Cancelled
+
+Everything with timestamps.
+
+---
+
+# 22. Editable Tournament
+
+Even after publishing:
+
+Admin can edit:
+
+Title
+
+Description
+
+Banner
+
+Thumbnail
+
+Registration Fee
+
+Slots
+
+Time
+
+Prize
+
+Rules
+
+Notes
+
+Status
+
+Every edit updates the live announcement embed.
+
+No need to recreate.
+
+---
+
+# 23. Reminder System
+
+Admin Reminder
+
+Notify:
+
+1 hour before tournament starts.
+
+User Reminder
+
+DM every approved participant.
+
+Timing configurable while creating.
+
+Examples:
+
+30 minutes
+
+20 minutes
+
+15 minutes
+
+10 minutes
+
+5 minutes
+
+Reminder DM example:
+
+```
+Tournament Reminder
+
+Your match begins in 20 minutes.
+
+Tournament:
+Friday Night Squad
+
+Room ID and Password will be sent shortly.
+
+Please stay online.
+```
+
+---
+
+# 24. DM Notifications
+
+Automatically DM users:
+
+Registration Received
+
+Payment Approved
+
+Payment Rejected
+
+Registration Closed
+
+Tournament Reminder
+
+Room ID & Password (when released)
+
+Tournament Cancelled
+
+Tournament Completed
+
+---
+
+# 25. Room Credentials
+
+Admin panel:
+
+```
+Release Room Details
+```
+
+Input:
+
+Room ID
+
+Password
+
+Optional Notes
+
+Bot automatically DMs all approved players.
+
+---
+
+# 26. Dashboard Statistics
+
+Admin panel displays:
+
+Total Registrations
+
+Approved
+
+Rejected
+
+Pending
+
+Available Slots
+
+Collected Amount
+
+Prize Pool
+
+Tournament Status
+
+Time Remaining
+
+---
+
+# 27. Search & Management
+
+Commands:
+
+* /match edit
+* /match delete
+* /match publish
+* /match close
+* /match cancel
+* /match reminders
+* /match prizes
+* /match stats
+* /match logs
+* /match export
+
+---
+
+# 28. Data Storage
+
+Store permanently:
+
+Tournament Data
+
+Participants
+
+Tickets
+
+Payment Status
+
+Prize Settings
+
+Reminder Settings
+
+Room Credentials
+
+Logs
+
+Message IDs
+
+Channel IDs
+
+Embed IDs
+
+User IDs
+
+Everything should survive bot restarts.
+
+---
+
+# 29. Error Handling
+
+Prevent:
+
+Duplicate registrations
+
+Double approvals
+
+Overfilled slots
+
+Expired registrations
+
+Deleted channels
+
+Missing permissions
+
+Invalid image uploads
+
+Database failures
+
+Bot restarts
+
+Message deletion
+
+Gracefully recover from failures.
+
+---
+
+# 30. UI Requirements
+
+* Clean professional embeds
+* Live updating embeds
+* Buttons
+* Select menus
+* Modals
+* Pagination where needed
+* Confirmation dialogs before destructive actions
+* Mobile-friendly layout
+* Consistent color theme
+* Fast response times
+
+---
+
+# 31. Overall Workflow
+
+1. Admin runs `/match create`.
+2. Bot opens a setup wizard and creates a private preview embed.
+3. Admin configures tournament details, visuals, registration fee, currency, slots, timer, reminders, and optional prize pool.
+4. Admin publishes the finalized embed to the tournament announcement channel.
+5. Users click **Register** and complete the registration modal.
+6. A private ticket channel is created automatically, where the bot posts the QR code and payment instructions.
+7. The user uploads a payment screenshot.
+8. Admin manually approves or rejects the registration.
+9. On approval, the slot count, remaining slots, countdown, and total collected amount update live on the public embed.
+10. When the timer expires or all slots are filled, registration closes automatically.
+11. If enabled, the bot prompts the admin to configure the prize distribution.
+12. Before the tournament starts, the bot reminds the admin (1 hour before) and sends configurable DM reminders to all approved participants (e.g., 20 or 15 minutes before).
+13. Admin releases the Room ID and Password, which are automatically DM'd to all approved players.
+14. All actions are logged, and the tournament remains editable through dedicated management commands until it is completed or cancelled.

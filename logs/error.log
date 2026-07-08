@@ -1,0 +1,11 @@
+2026-07-06 20:06:27 [[31merror[39m]: [Startup Error] querySrv ECONNREFUSED _mongodb._tcp.cluster0.ktxx4sr.mongodb.net
+2026-07-06 20:10:17 [[31merror[39m]: [Startup Error] querySrv ECONNREFUSED _mongodb._tcp.cluster0.ktxx4sr.mongodb.net
+2026-07-06 20:15:26 [[31merror[39m]: Error deploying commands: Unknown Application
+2026-07-06 20:18:46 [[31merror[39m]: Error deploying commands: ⨯ Unable to compile TypeScript:
+src/commands/tournament.ts(6,3): error TS2322: Type 'SlashCommandSubcommandsOnlyBuilder' is not assignable to type 'SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">'.
+  Type 'SlashCommandSubcommandsOnlyBuilder' is missing the following properties from type 'SlashCommandBuilder': addBooleanOption, addUserOption, addChannelOption, addRoleOption, and 6 more.
+src/commands/tournament.ts(30,9): error TS2322: Type '(interaction: CommandInteraction<CacheType>) => Promise<InteractionResponse<boolean> | undefined>' is not assignable to type '(interaction: CommandInteraction<CacheType>) => Promise<void>'.
+  Type 'Promise<InteractionResponse<boolean> | undefined>' is not assignable to type 'Promise<void>'.
+    Type 'InteractionResponse<boolean> | undefined' is not assignable to type 'void'.
+      Type 'InteractionResponse<boolean>' is not assignable to type 'void'.
+
