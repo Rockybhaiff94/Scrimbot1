@@ -1,5 +1,5 @@
 import { StringSelectMenuInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
-import Preset from '../../../database/models/Preset';
+import Preset from '../../database/models/Preset';
 
 export async function execute(interaction: StringSelectMenuInteraction) {
   const presetId = interaction.values[0];

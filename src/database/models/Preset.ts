@@ -158,14 +158,13 @@ const PresetSchema: Schema = new Schema({
 }, { timestamps: true });
 
 // Ensure only one default preset per guild
-PresetSchema.pre('save', async function(next) {
+PresetSchema.pre('save', async function() {
   if (this.isModified('isDefault') && this.isDefault) {
     await this.model('Preset').updateMany(
       { guildId: this.guildId, _id: { $ne: this._id } },
       { $set: { isDefault: false } }
     );
   }
-  next();
 });
 
 export default mongoose.model<IPreset>('Preset', PresetSchema);

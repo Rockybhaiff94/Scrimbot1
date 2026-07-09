@@ -1,13 +1,13 @@
 import Preset, { IPreset } from '../database/models/Preset';
 import Tournament from '../database/models/Tournament';
-import { v4 as uuidv4 } from 'uuid';
+import crypto from 'crypto';
 
 export class PresetService {
   /**
    * Generates a unique short ID for a preset.
    */
   static generatePresetId(): string {
-    return 'PRESET-' + uuidv4().split('-')[0].toUpperCase();
+    return 'PRESET-' + crypto.randomUUID().split('-')[0].toUpperCase();
   }
 
   /**
@@ -168,7 +168,7 @@ export class PresetService {
     preset.lastUsed = new Date();
     await preset.save();
 
-    const tId = 'T-' + uuidv4().split('-')[0].toUpperCase();
+    const tId = 'T-' + crypto.randomUUID().split('-')[0].toUpperCase();
 
     // Create tournament document data based on preset
     const tournamentData = {
