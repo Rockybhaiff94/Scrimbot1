@@ -35,8 +35,27 @@ if (fs.existsSync(commandsPath)) {
 }
 
 // Basic ready event
-client.once('ready', () => {
+client.once('ready', async () => {
   logger.info(`[Bot] Logged in as ${client.user?.tag}!`);
+  
+  // Auto-deploy commands directly from the client using the exact loaded commands
+  try {
+    const commandsArray = commands.map(c => c.data.toJSON());
+    const guildId = process.env.GUILD_ID;
+    
+    if (client.application) {
+      if (guildId) {
+        await client.application.commands.set(commandsArray, guildId);
+        logger.info(`[Deploy] Successfully loaded ${commandsArray.length} guild commands.`);
+      } else {
+        await client.application.commands.set(commandsArray);
+        logger.info(`[Deploy] Successfully loaded ${commandsArray.length} global commands.`);
+      }
+    }
+  } catch (err) {
+    logger.error('[Deploy Error]', err);
+  }
+
   startLeaderboardJob(client);
   startTournamentScheduler(client);
 });
