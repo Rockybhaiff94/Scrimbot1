@@ -62,10 +62,8 @@ client.on('interactionCreate', async interaction => {
     }
   } else if (interaction.isButton()) {
     try {
-      // Resolve button handler - support dynamic IDs (e.g., register_button_T-XXXXX)
       let handlerId = interaction.customId;
       
-      // Extract base handler ID for dynamic IDs (e.g., register_button_T-XXXXX -> register_button)
       if (handlerId.startsWith('register_button')) handlerId = 'register_button';
       else if (handlerId.startsWith('setup_basic')) handlerId = 'setup_basic';
       else if (handlerId.startsWith('setup_visuals')) handlerId = 'setup_visuals';
@@ -75,6 +73,7 @@ client.on('interactionCreate', async interaction => {
       else if (handlerId.startsWith('setup_publish')) handlerId = 'setup_publish';
       else if (handlerId.startsWith('prize_yes')) handlerId = 'prize_yes';
       else if (handlerId.startsWith('prize_skip')) handlerId = 'prize_skip';
+      else if (handlerId.startsWith('preset_action_')) handlerId = 'preset_action';
       
       const buttonPath = path.join(__dirname, 'interactions', 'buttons', `${handlerId}.ts`);
       const jsButtonPath = path.join(__dirname, 'interactions', 'buttons', `${handlerId}.js`);
@@ -94,10 +93,8 @@ client.on('interactionCreate', async interaction => {
     }
   } else if (interaction.isModalSubmit()) {
     try {
-      // Resolve modal handler - support dynamic IDs (e.g., registration_modal_T-XXXXX)
       let handlerId = interaction.customId;
       
-      // Extract base handler ID for dynamic IDs
       if (handlerId.startsWith('registration_modal')) handlerId = 'registration_modal';
       else if (handlerId.startsWith('setup_basic_modal')) handlerId = 'setup_basic_modal';
       else if (handlerId.startsWith('setup_visuals_modal')) handlerId = 'setup_visuals_modal';
@@ -105,6 +102,7 @@ client.on('interactionCreate', async interaction => {
       else if (handlerId.startsWith('setup_time_modal')) handlerId = 'setup_time_modal';
       else if (handlerId.startsWith('setup_payment_modal')) handlerId = 'setup_payment_modal';
       else if (handlerId.startsWith('prize_modal')) handlerId = 'prize_modal';
+      else if (handlerId.startsWith('quick_match_modal_')) handlerId = 'quick_match_modal';
       
       const modalPath = path.join(__dirname, 'interactions', 'modals', `${handlerId}.ts`);
       const jsModalPath = path.join(__dirname, 'interactions', 'modals', `${handlerId}.js`);
@@ -126,6 +124,8 @@ client.on('interactionCreate', async interaction => {
     try {
       let handlerId = interaction.customId;
       if (handlerId.startsWith('publish_channel_select')) handlerId = 'publish_channel_select';
+      else if (handlerId.startsWith('preset_list_select')) handlerId = 'preset_list_select';
+      else if (handlerId.startsWith('preset_use_select')) handlerId = 'preset_use_select';
       
       const selectPath = path.join(__dirname, 'interactions', 'selectmenus', `${handlerId}.ts`);
       const jsSelectPath = path.join(__dirname, 'interactions', 'selectmenus', `${handlerId}.js`);
