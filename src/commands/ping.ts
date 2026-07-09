@@ -4,8 +4,12 @@ import { Command } from '../types/Command';
 export const command: Command = {
   data: new SlashCommandBuilder()
     .setName('ping')
-    .setDescription('Replies with Pong!'),
+    .setDescription('Replies with the bot latency!'),
   async execute(interaction: CommandInteraction) {
-    await interaction.reply('Pong! The bot is online and working.');
+    const sent = await interaction.reply({ content: 'Pinging...', fetchReply: true });
+    const roundTripLatency = sent.createdTimestamp - interaction.createdTimestamp;
+    const wsLatency = interaction.client.ws.ping;
+    
+    await interaction.editReply(`Pong! 🏓\n- **Round-trip latency:** ${roundTripLatency}ms\n- **WebSocket ping:** ${wsLatency}ms`);
   },
 };
